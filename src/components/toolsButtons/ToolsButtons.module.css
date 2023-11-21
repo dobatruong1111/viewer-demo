@@ -1,0 +1,22 @@
+.toolsButtons {
+    height: 100%;
+    width: 85%;
+    background-color: #27272B;
+    color: white;
+}
+
+.btn {
+    cursor: pointer;
+    color: white;
+    width: 100px;
+    background-color: #27272B;
+    border: none;
+    font-size: 14px;
+    text-align: left;
+    height: 50%;
+    display: block;
+}
+.btn:hover {
+    background-color: #323236;
+    color: #61DAFB;
+}

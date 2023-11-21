@@ -1,0 +1,63 @@
+.content {
+    margin: 10px;
+    /* border: 1px solid black; */
+    width: 85vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #27272B;
+    position: relative;
+}
+
+.patientInfo {
+    height: 100px;
+    width: 200px;
+    border: 0.1px solid white;
+    color: white;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    text-align: center;
+}
+
+.viewport {
+    height: 400px;
+    width: 400px;
+    border: 0.1px solid white;
+    color: white;
+    position: absolute;
+    text-align: center;
+}
+
+.studyInfo {
+    height: 100px;
+    width: 200px;
+    border: 0.1px solid white;
+    color: white;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+}
+
+.imageInfo {
+    height: 100px;
+    width: 200px;
+    border: 0.1px solid white;
+    color: white;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    text-align: center;
+}
+
+.toolInfo {
+    height: 100px;
+    width: 200px;
+    border: 0.1px solid white;
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    text-align: center;
+}

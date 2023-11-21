@@ -1,0 +1,11 @@
+.logo {
+    height: 100%;
+    width: 15%;
+    /* border-right: 1px solid black; */
+    background-color: #27272B;
+}
+
+.icon {
+    height: 100%;
+    width: 100%;
+}
