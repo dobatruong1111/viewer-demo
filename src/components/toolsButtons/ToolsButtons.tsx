@@ -1,26 +1,57 @@
 import {
-    memo, useContext
-} from "react"
-import style from "./ToolsButtons.module.css"
-import { OptionContext } from "../../App"
+    memo,
+    useContext
+} from "react";
+import { OptionContext } from "../../App";
+import { Button } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import Stack from '@mui/material/Stack';
+
+const options = [
+    {
+        optionId: 1,
+        optionName: "Home",
+    },
+    {
+        optionId: 2,
+        optionName: "File",
+    }
+];
 
 function ToolsButtons() {
-    const {options, clickedOptionId, setClickedOptionId} = useContext(OptionContext)
+    const {clickedOptionId, handleClickedOptionId} = useContext(OptionContext);
 
     return (
-        <div className={style.toolsButtons}>
+        <Stack
+            sx={{
+                height: "100%",
+                width: "85%",
+                backgroundColor: "#27272B"
+            }}
+        >
             {options.map(option => (
-                <button 
-                    key={option.optionId} 
-                    className={style.btn}
-                    onClick={() => setClickedOptionId(option.optionId)}
-                    style={clickedOptionId === option.optionId ? {color: "#61DAFB", background: "#323236"} : {}}
+                <Button 
+                    key={option.optionId}
+                    startIcon={option.optionId === 1 ? <HomeIcon/> : <FileCopyIcon/>}
+                    sx={{
+                        textTransform: "none",
+                        cursor: "pointer",
+                        color: clickedOptionId === option.optionId ? "#61DAFB" : "white",
+                        height: "50%",
+                        width: "100px",
+                        backgroundColor: clickedOptionId === option.optionId ? "#323236" : "#27272B",
+                        border: "none",
+                        fontSize: "14px",
+                        justifyContent: "flex-start"
+                    }}
+                    onClick={() => handleClickedOptionId(option.optionId)}
                 >
-                    <i className={option.icon}/> {option.optionName}
-                </button>
+                    {option.optionName}
+                </Button>
             ))}
-        </div>
-    )
+        </Stack>
+    );
 }
 
-export default memo(ToolsButtons)
+export default memo(ToolsButtons);

@@ -1,17 +1,22 @@
 import {
     memo
-} from "react"
-import styles from "./Header.module.css"
-import Logo from "../logo/Logo"
-import ToolsButtons from "../toolsButtons/ToolsButtons"
+} from "react";
+import Logo from "../logo/Logo";
+import ToolsButtons from "../toolsButtons/ToolsButtons";
+import Stack from '@mui/material/Stack';
 
 function Header() {
     return (
-        <div className={styles.header}>
+        <Stack
+            sx={{
+                height: "15vh"
+            }}
+            direction={"row"}
+        >
             <Logo/>
             <ToolsButtons/>
-        </div>
-    )
+        </Stack>
+    );
 }
 
-export default memo(Header)
+export default memo(Header);

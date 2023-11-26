@@ -1,64 +1,70 @@
-import './App.css';
-import Header from './components/header/Header';
-import ToolsMenu from './components/toolsMenu/ToolsMenu';
-import Content from './components/content/Content';
-import { useState, createContext } from 'react';
+import "./App.css";
+import Header from "./components/header/Header";
+import ToolsMenu from "./components/toolsMenu/ToolsMenu";
+import Content from "./components/content/Content";
+import {
+    useState,
+    createContext,
+    useCallback
+} from "react";
+import { StackScrollMouseWheelTool } from "@cornerstonejs/tools";
 
-interface Option {
-  optionId: number
-  optionName: string
-  icon: string
+export interface ViewerTool {
+    toolId: number
+    toolName: string
+    fullToolName: string
+}
+
+interface CurrentViewerToolContextType {
+    clickedViewerTool: ViewerTool
+    handleClickedViewerTool: (viewerTool: ViewerTool) => void
 }
 interface CurrentOptionContextType {
-  options: Option[]
-  clickedOptionId: number
-  setClickedOptionId: (clickedOptionId: number) => void
+    clickedOptionId: number
+    handleClickedOptionId: (id: number) => void
 }
-interface CurrentImageContextType {
-  image: any,
-  setImage: (image: any) => void
+
+// Default tool
+const scrollTool: ViewerTool = {
+    toolId: 0,
+    toolName: "Scroll",
+    fullToolName: StackScrollMouseWheelTool.toolName
 }
 
 export const OptionContext = createContext<CurrentOptionContextType>({
-  options: [],
-  clickedOptionId: 0,
-  setClickedOptionId: () => {}
-})
-export const ImageContext = createContext<CurrentImageContextType>({
-  image: undefined,
-  setImage: () => {}
-})
-
-const options: Option[] = [
-  {
-    optionId: 1,
-    optionName: "Home",
-    icon: "fas fa-home"
-  },
-  {
-    optionId: 2,
-    optionName: "File",
-    icon: "fas fa-file"
-  }
-]
+    clickedOptionId: 1,
+    handleClickedOptionId: (id: number) => {}
+});
+export const ViewerToolContext = createContext<CurrentViewerToolContextType>({
+    clickedViewerTool: scrollTool,
+    handleClickedViewerTool: (viewerTool: ViewerTool) => {}
+});
 
 function App() {
-  const [clickedOptionId, setClickedOptionId] = useState<number>(1)
-  const [image, setImage] = useState<any>()
+    const [clickedOptionId, setClickedOptionId] = useState<number>(1);
+    const [clickedViewerTool, setClickedViewerTool] = useState<ViewerTool>(scrollTool);
 
-  return (
-    <OptionContext.Provider value={{options, clickedOptionId, setClickedOptionId}}>
-      <div className="App">
-        <Header/>
-        <div className="body">
-          <ImageContext.Provider value={{image, setImage}}>
-            <ToolsMenu/>
-            <Content/>
-          </ImageContext.Provider>
-        </div>
-      </div>
-    </OptionContext.Provider>
-  );
+    const handleClickedOptionId = useCallback((id: number) => {
+        setClickedOptionId(id);
+    }, []);
+
+    const handleClickedViewerTool = useCallback((viewerTool: ViewerTool) => {
+        setClickedViewerTool(viewerTool);
+    }, []);
+
+    return (
+        <OptionContext.Provider value={{clickedOptionId, handleClickedOptionId}}>
+            <div className="App">
+                <Header/>
+                <div className="body">
+                    <ViewerToolContext.Provider value={{clickedViewerTool, handleClickedViewerTool}}>
+                        <ToolsMenu/>
+                        <Content/>
+                    </ViewerToolContext.Provider>
+                </div>
+            </div>
+        </OptionContext.Provider>
+    );
 }
 
-export default App
+export default App;

@@ -1,21 +1,25 @@
 import {
     memo
-} from "react"
-import styles from "./Logo.module.css"
-import logo from "../../logo.svg"
+} from "react";
+import logo from "../../assets/logo.svg";
+import Stack from '@mui/material/Stack';
 
 function Logo() {
     return (
-        <div
-            className={styles.logo}
+        <Stack
+            sx={{
+                height: "100%",
+                width: "15%",
+                backgroundColor: "#27272B"
+            }}
         >
             <img
-                className={styles.icon}
                 src={logo}
                 alt="logo"
+                style={{height: "100%", width: "100%"}}
             />
-        </div>
-    )
+        </Stack>
+    );
 }
 
-export default memo(Logo)
+export default memo(Logo);
