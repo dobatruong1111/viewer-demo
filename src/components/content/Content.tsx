@@ -68,10 +68,10 @@ async function run(container: HTMLDivElement, setMetadata: Function) {
         wadoRsRoot: 'https://d3t6nz73ql33tx.cloudfront.net/dicomweb'
     });
     
-    metaData.addProvider(
-        (type, imageId) => hardcodedMetaDataProvider(type, imageId, imageIds),
-        10000
-    );
+    // metaData.addProvider(
+    //     (type, imageId) => hardcodedMetaDataProvider(type, imageId, imageIds),
+    //     10000
+    // );
 
     try {
         await initDemo();
